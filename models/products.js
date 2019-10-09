@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const productsSchema = new Schema({
   name: {
     type: String,
     required: true
   },
-  email: {
+  picture: {
     type: String,
     required: true
   },
@@ -17,9 +17,9 @@ const UserSchema = new Schema({
   },
   date: {
     type: Date,
-    default: new Date()
-}
-})
+    default: Date.now
+  }
+});
 
 const User = mongoose.model("users", UserSchema);
 

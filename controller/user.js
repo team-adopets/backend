@@ -1,12 +1,9 @@
 const express = require("express");
-const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
-const UserImage = require("../models/userImage");
-const Image = require("../models/image");
 
 const User = require("../models/user");
 
@@ -25,16 +22,10 @@ module.exports = {
           email: "Email already exists"
         });
       } else {
-        const avatar = gravatar.url(req.body.email, {
-          s: "200",
-          r: "pg",
-          d: "mm"
-        });
         const newUser = new User({
           name: req.body.name,
           email: req.body.email,
-          password: req.body.password,
-          avatar
+          password: req.body.password
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -73,8 +64,7 @@ module.exports = {
         if (isMatch) {
           const payload = {
             id: user.id,
-            name: user.name,
-            avatar: user.avatar
+            name: user.name
           };
           jwt.sign(
             payload,
@@ -100,6 +90,8 @@ module.exports = {
     });
   },
   getAuth: (req, res) => {
+    console.log(req.user);
+    
     passport.authenticate("jwt", { session: false }),
       (req, res) => {
         return res.json({
@@ -108,6 +100,21 @@ module.exports = {
           email: req.user.email
         });
       };
+  },
+  getAll: (req, res) => {
+    User.find((error, result) => {
+      if (error) {
+        res.status(400).send({
+          message: `user failed`,
+          error
+        });
+      } else {
+        res.status(200).send({
+          message: `All users get`,
+          result
+        });
+      }
+    })
   }
 };
 
