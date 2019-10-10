@@ -2,8 +2,8 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
-const validateRegisterInput = require("../validation/register");
-const validateLoginInput = require("../validation/login");
+const validateRegisterInput = require("../middleware/register");
+const validateLoginInput = require("../middleware/login");
 
 const User = require("../models/user");
 
@@ -117,27 +117,3 @@ module.exports = {
     })
   }
 };
-
-// I have defined the two post routes.
-
-// Register,Login.
-
-// Inside the post route of the register, we first check the validation for all of our inputs. If the errors exist, then there is no need for the further process. So sent back the error response to the client.
-
-// After that, we check, if the email already exists, if so we need to send an error response to the client.
-
-// Otherwise, we fetch the avatar based on email address, if an avatar is not there then by default will be sent back as a response.
-
-// Then we create a hash value of the password and save the user in the database successfully and send back that user to the client.
-
-// Now, for login the user, first, we check the validation same as a register.
-
-// Then go for checking the email, and if the email is not found, then we send back the error to the client saying that user is not found.
-
-// If email is proper, then we check password with bcrypt’s compare method. If the match is found, then we need to generate the jwt token.
-
-// We use the user object as a payload and give a secret key to generate JWT token and send back that token to the user and logged in the user.
-
-// Also, I have used get route, and that is /me.
-
-// If the user is logged in and it has the jwt token then and then it can access this route otherwise he will redirect back to log in because this route is protected.
