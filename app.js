@@ -1,37 +1,40 @@
 const express = require("express");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const config = require("./config/db");
-const users = require("./routes/user");
 const cors = require("cors");
-
-
-mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-  () => {
-    console.log("Database is connected");
-  },
-  err => {
-    console.log("Can not connect to the database" + err);
-  }
-);
-
-const app = express();
-app.use(passport.initialize());
 require("./passport")(passport);
 
+const config = require("./config/db");
+const { PORT } = require("./config/variabelEnv");
+const users = require("./routes/user");
+const product = require("./routes/product");
+const picture = require("./routes/picture");
+
+const Port = PORT || 3000;
+const app = express();
+
+
+app.use(passport.initialize());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 
 app.get("/", function(req, res) {
   res.send("hello");
 });
 app.use("/api/users", users);
+app.use("/api/product", product);
+app.use("/api/pict", picture);
 
-const PORT = process.env.PORT || 8888;
+if (!config) {
+  console.log({
+    error : error
+  });
+}else {
+  console.log ("success connected to database")
+}
 
-app.listen(PORT, () => {
-  console.log(`Server is running on PORT ${PORT}`);
+app.listen(Port, () => {
+  console.log(`Server is running on PORT ${Port}`);
 });

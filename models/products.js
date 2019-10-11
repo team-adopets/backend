@@ -7,20 +7,29 @@ const productsSchema = new Schema({
     type: String,
     required: true
   },
-  picture: {
+  ras: {
     type: String,
     required: true
   },
-  password: {
+  gender: {
     type: String,
     required: true
   },
+  age: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  pictures: [{ type: Schema.Types.ObjectId, ref: "picture" }],
   date: {
     type: Date,
     default: Date.now
   }
 });
 
-const Product = mongoose.model("users", productsSchema);
+const Product = mongoose.model("products", productsSchema);
 
 module.exports = Product;
