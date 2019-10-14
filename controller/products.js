@@ -1,9 +1,7 @@
 const Product = require("../models/products");
 
 module.exports = {
-  getAll: (req, res) => {
-    console.log(true);
-    
+  getAll: (req, res) => {    
     Product.find((error, result) => {
       if (error) {
         res.status(400).send({
