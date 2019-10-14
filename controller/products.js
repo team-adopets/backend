@@ -50,5 +50,22 @@ module.exports = {
         error: error.message
       });
     }
+  },
+  updateProduct: (req, res) => {
+    console.log(req.body)
+    Product.findOneAndUpdate({ _id: req.params._id }, req.body, (error, result) => {
+      if (error) {
+        res.status(400).send({
+          message: `product failed to update`,
+          error
+        });
+      } else {
+        res.status(200).send({
+          message: `product update`,
+          result
+        });
+      }
+    });
   }
 };
+

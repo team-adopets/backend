@@ -23,6 +23,10 @@ const productsSchema = new Schema({
     type: String,
     required: true
   },
+   price: {
+    type: String,
+    required: true
+  },
   pictures: [{ type: Schema.Types.ObjectId, ref: "picture" }],
   date: {
     type: Date,
