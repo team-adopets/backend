@@ -19,7 +19,7 @@ module.exports = {
     }).populate("pictures","link -_id");
   },
   getOne: (req, res) => {
-    Product.findOne({ _id: req.body._id }, (error, result) => {
+    Product.findOne({ _id: req.params._id }, (error, result) => {
       if (error) {
         res.status(400).send({
           message: `can't find one`,
@@ -31,7 +31,7 @@ module.exports = {
           result
         });
       }
-    }).populate("picture", "picture -_id");
+    }).populate("picture", "link -_id");
   },
   addProduct: async (req, res) => {
     try {
