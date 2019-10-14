@@ -29,7 +29,7 @@ module.exports = {
           result
         });
       }
-    }).populate("picture", "link -_id");
+    }).populate("pictures", "link -_id");
   },
   addProduct: async (req, res) => {
     try {
