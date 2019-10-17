@@ -64,7 +64,8 @@ module.exports = {
         if (isMatch) {
           const payload = {
             id: user.id,
-            name: user.name
+            name: user.name,
+            email: user.email
           };
           jwt.sign(
             payload,
