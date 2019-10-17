@@ -1,5 +1,4 @@
 const express = require("express");
-// const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const cors = require("cors");
@@ -10,6 +9,7 @@ const { PORT } = require("./config/variabelEnv");
 const users = require("./routes/user");
 const product = require("./routes/product");
 const picture = require("./routes/picture");
+const checkout = require("./routes/checkout");
 
 const Port = PORT || 3000;
 const app = express();
@@ -26,6 +26,7 @@ app.get("/", function(req, res) {
 app.use("/api/users", users);
 app.use("/api/product", product);
 app.use("/api/pict", picture);
+app.use("/api/checkout", checkout)
 
 if (!config) {
   console.log({

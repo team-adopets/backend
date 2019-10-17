@@ -40,6 +40,7 @@ module.exports = {
         age: req.body.age,
         description: req.body.description
       });
+      
       res.status(200).send({
         message: "product is created",
         Product
