@@ -20,11 +20,11 @@ const productsSchema = new Schema({
     required: true
   },
   description: {
-    type: Number,
+    type: String,
     required: true
   },
    price: {
-    type: String,
+    type: Number,
     required: true
   },
   pictures: [{ type: Schema.Types.ObjectId, ref: "picture" }],
