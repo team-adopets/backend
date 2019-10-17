@@ -38,12 +38,6 @@ module.exports = {
         }
         let dataDecoded = req.decoded
 
-
-        console.log(dataDecoded, "hasil decoded");
-        console.log(req.body, "data checkout yg dikirm");
-
-
-
         const auth = {
             host: "smtp.mailtrap.io",
             port: 2525,
