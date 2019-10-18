@@ -8,5 +8,4 @@ router.get("/auth",getAuth);
 router.get("/data",getAll);
 
 
-
 module.exports = router;
