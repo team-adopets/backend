@@ -32,7 +32,6 @@ module.exports = {
     }
     let dataDecoded = req.decoded;
 
-    // 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
     var options = {
         auth: {
           api_user: process.env.SENDGRID_USERNAME,
@@ -42,12 +41,6 @@ module.exports = {
 
     var client = nodemailer.createTransport(sgTransport(options));
 
-
-    // const transporter = nodemailer.createTransport(auth);
-
-    /* 
-            data field : age, date, description, gender, name, price, ras 
-        */
     let name = "";
     let total = 0;
     for (let i = 0; i < req.body.length; i++) {
